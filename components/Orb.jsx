@@ -215,7 +215,8 @@ export default function Orb({
 
     function resize() {
       if (!container) return;
-      const dpr = window.devicePixelRatio || 1;
+      // Cap DPR — a per-pixel noise shader at DPR 3 is a real GPU cost on phones.
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const width = container.clientWidth;
       const height = container.clientHeight;
       renderer.setSize(width * dpr, height * dpr);
@@ -258,7 +259,9 @@ export default function Orb({
     container.addEventListener('mouseleave', handleMouseLeave);
 
     let rafId;
+    let running = true;
     const update = t => {
+      if (!running) return;
       rafId = requestAnimationFrame(update);
       const dt = (t - lastTime) * 0.001;
       lastTime = t;
@@ -279,7 +282,22 @@ export default function Orb({
     };
     rafId = requestAnimationFrame(update);
 
+    // Pause the shader loop while the orb is scrolled out of view.
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !running) {
+        running = true;
+        lastTime = performance.now();
+        rafId = requestAnimationFrame(update);
+      } else if (!entry.isIntersecting && running) {
+        running = false;
+        cancelAnimationFrame(rafId);
+      }
+    });
+    io.observe(container);
+
     return () => {
+      running = false;
+      io.disconnect();
       cancelAnimationFrame(rafId);
       window.removeEventListener('resize', resize);
       container.removeEventListener('mousemove', handleMouseMove);
