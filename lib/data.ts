@@ -23,6 +23,30 @@ export const hero = {
   proofLine: "2+ years experience · Full-stack · Web & blockchain apps",
 } as const;
 
+// About — rendered as a terminal session (whoami / cat / ls).
+export const about = {
+  whoami: "Dasun Tharuka — Associate Software Engineer",
+  bio: "I'm a full-stack engineer who builds production web apps end-to-end — React and Next.js on the front, Node.js and Go microservices on the back, with PostgreSQL and MongoDB underneath. I work across REST and gRPC APIs, real-time flows over WebSockets, payment and blockchain-wallet integrations, and containerized deploys with Docker and Kubernetes. I care about clean architecture, fast APIs, and AI-assisted workflows.",
+  education: {
+    degree: "B.Sc. (Hons) in IT — Software Engineering",
+    school: "SLIIT",
+    period: "2022 — 2026 (expected)",
+    gpa: "3.79 / 4.00",
+    honors: "Dean's List ×3 (incl. full scholarship)",
+  },
+  now: [
+    "Building NextGen QA — a vision-LLM agent that writes UI tests (final-year research)",
+    "Shipping Go microservices & React dashboards in production",
+    "Exploring LLM agents, RAG, and on-chain integrations",
+  ],
+  meta: [
+    { k: "location", v: "Colombo, Sri Lanka" },
+    { k: "experience", v: "2+ years, production" },
+    { k: "focus", v: "Web & blockchain" },
+    { k: "status", v: "Open to opportunities" },
+  ],
+} as const;
+
 export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
