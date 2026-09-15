@@ -74,6 +74,112 @@ export const experience = [
   },
 ] as const;
 
+// Projects — personal & university work only (company work stays in Experience).
+// `image: null` renders an animated terminal preview instead of a screenshot.
+export type Project = {
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string | null;
+  terminal?: readonly string[]; // typed lines for image-less cards
+  tech: readonly string[];
+  category: string;
+};
+
+export const projects: readonly Project[] = [
+  {
+    title: "Blockchain Explorer",
+    subtitle: "Full-Stack On-Chain Data Platform",
+    description:
+      "A Go indexing service and REST API over PostgreSQL with a responsive Next.js frontend for searching blocks, transactions, and wallet addresses on Ethereum Sepolia in near real time.",
+    image: null,
+    terminal: [
+      "$ ./explorer --network sepolia",
+      "→ indexing block 4,812,004…",
+      "✓ 1,024 txns indexed · api listening :8080",
+    ],
+    tech: ["Next.js", "Go", "PostgreSQL", "go-ethereum", "JSON-RPC", "Sepolia"],
+    category: "Blockchain",
+  },
+  {
+    title: "Mini Layer 1 Blockchain",
+    subtitle: "Systems Project in Go",
+    description:
+      "A Layer 1 blockchain programmed from scratch: proof-of-work consensus, peer-to-peer block propagation, a transaction mempool, and a CLI wallet — no frameworks, just Go.",
+    image: null,
+    terminal: [
+      "$ go run ./cmd/chain --mine",
+      "→ mining block #42… nonce=88214",
+      "✓ block sealed · broadcast to 4 peers",
+    ],
+    tech: ["Go", "SHA-256", "ECDSA", "Proof-of-Work", "P2P Networking"],
+    category: "Blockchain",
+  },
+  {
+    title: "Waste Management System",
+    subtitle: "ecoRecycle",
+    description:
+      "A comprehensive waste management platform promoting sustainability — user registration, waste submission management, pickup scheduling, real-time status tracking, payment integration, and recycling statistics.",
+    image: "/projects/waste.webp",
+    tech: ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS", "JWT", "Chart.js"],
+    category: "Web Application",
+  },
+  {
+    title: "React Note Manager",
+    subtitle: "Team-Based Note Management",
+    description:
+      "A centralized platform for real-time team collaboration on notes — Redux for global state, Firebase and Firestore for live syncing, with shared workspaces for organizing and sharing notes.",
+    image: "/projects/notemanager.webp",
+    tech: ["React", "Redux", "Firebase", "Firestore", "Tailwind CSS", "React Router"],
+    category: "Web Application",
+  },
+  {
+    title: "Study Time Management App",
+    subtitle: "MyStudy Life",
+    description:
+      "An Android app helping students manage study schedules, track progress, and collaborate with peers — to-do lists, study planning, task deadlines, and progress tracking on the go.",
+    image: "/projects/mystudy.webp",
+    tech: ["Kotlin", "Android Studio", "Room Database", "RecyclerView", "MVVM"],
+    category: "Android App",
+  },
+  {
+    title: "TV Show Recommendation App",
+    subtitle: "TvFinder",
+    description:
+      "A React application that recommends TV shows based on user searches, using public REST APIs and React Hooks for a fast, dynamic browsing experience.",
+    image: "/projects/tvshow.webp",
+    tech: ["React", "Tailwind CSS", "REST APIs", "React Router", "Axios"],
+    category: "Web Application",
+  },
+  {
+    title: "Educational App",
+    subtitle: "EduApp",
+    description:
+      "An Android learning app designed in Figma and built in Android Studio — course materials, quizzes, and progress tracking to keep students organized and motivated.",
+    image: "/projects/eduapp.webp",
+    tech: ["Kotlin", "Android Studio", "Figma", "Firebase"],
+    category: "Android App",
+  },
+  {
+    title: "Wedding Planning System",
+    subtitle: "Wedding Planner",
+    description:
+      "A wedding management system with an admin panel for guest lists, event scheduling, and vendor coordination — built as a first-year IWT final project.",
+    image: "/projects/wedding.webp",
+    tech: ["PHP", "HTML", "CSS", "JavaScript", "MySQL", "jQuery"],
+    category: "Web Application",
+  },
+  {
+    title: "Music Festival Website",
+    subtitle: "UI/UX Design",
+    description:
+      "A responsive frontend for a music festival — schedule, artists, and ticket information presented through intuitive navigation and visually engaging layouts.",
+    image: "/projects/music.webp",
+    tech: ["Tailwind CSS", "HTML", "CSS", "JavaScript"],
+    category: "UI/UX Project",
+  },
+] as const;
+
 export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
