@@ -24,11 +24,14 @@ export default function Navbar() {
   }, [open]);
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-md transition-colors duration-300 ${
-        scrolled || open
-          ? 'border-hairline bg-ink/90 shadow-lg shadow-black/30'
-          : 'border-hairline/50 bg-ink/60'
+        open
+          ? 'border-hairline bg-ink'
+          : scrolled
+            ? 'border-hairline bg-ink/90 shadow-lg shadow-black/30'
+            : 'border-hairline/50 bg-ink/60'
       }`}
     >
       <nav
@@ -88,7 +91,7 @@ export default function Navbar() {
         >
           <span
             className={`absolute h-px w-5 bg-snow transition-transform duration-300 ${
-              open ? 'rotate-45' : '-translate-y-[3.5px]'
+              open ? 'rotate-45' : 'translate-y-[-3.5px]'
             }`}
           />
           <span
@@ -98,11 +101,14 @@ export default function Navbar() {
           />
         </button>
       </nav>
+    </header>
 
-      {/* Mobile overlay menu */}
+      {/* Mobile overlay menu — rendered OUTSIDE the backdrop-filtered header so
+          its containing block is the viewport (otherwise it collapses to ~0px).
+          Solid bg fully covers everything below the nav bar. */}
       <div
         id="mobile-menu"
-        className={`fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col justify-between bg-ink/95 px-6 pb-10 pt-8 backdrop-blur-lg transition-[opacity,visibility] duration-300 md:hidden ${
+        className={`fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col justify-between bg-ink px-6 pb-10 pt-8 transition-[opacity,visibility] duration-300 md:hidden ${
           open ? 'visible opacity-100' : 'invisible opacity-0'
         }`}
       >
@@ -154,6 +160,6 @@ export default function Navbar() {
           </a>
         </div>
       </div>
-    </header>
+    </>
   );
 }
