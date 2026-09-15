@@ -25,10 +25,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-md transition-colors duration-300 ${
         scrolled || open
-          ? 'border-b border-hairline bg-ink/80 backdrop-blur-md'
-          : 'border-b border-transparent bg-transparent'
+          ? 'border-hairline bg-ink/90 shadow-lg shadow-black/30'
+          : 'border-hairline/50 bg-ink/60'
       }`}
     >
       <nav
