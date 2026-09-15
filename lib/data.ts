@@ -180,6 +180,44 @@ export const projects: readonly Project[] = [
   },
 ] as const;
 
+// Research — final-year research project (NextGen QA).
+export const research = {
+  name: "NextGen QA",
+  tagline: "Intelligent Test Case Generation",
+  status: "ONGOING · Final-Year Research · expected 2026",
+  overview:
+    "A four-component research platform whose six-stage human-in-the-loop pipeline turns plain user stories into Gherkin scenarios and executable Selenium, Playwright, and Cypress suites — run on GitHub Actions with live logs and Allure reports.",
+  novelty:
+    "The core novelty: a vision-guided LLM agent that explores live apps through Set-of-Mark annotated screenshots, reasons as Planner / Actor / Observer / Critic with Reflexion failure memory, and stops on a coverage-plateau criterion — grounding every action in real page elements to eliminate selector hallucination.",
+  highlights: [
+    "Six-stage human-in-the-loop pipeline: user story → Gherkin → executable suites",
+    "Vision agent navigates real UIs via Set-of-Mark screenshots — no selector hallucination",
+    "RandomForest (SMOTE) risk model runs likely-failing tests first",
+    "13-metric evaluation plan: executability, selector accuracy, seeded-fault detection, APFD",
+  ],
+  pipeline: [
+    "user story",
+    "gherkin scenarios",
+    "agent exploration",
+    "test suites",
+    "ci execution",
+    "allure reports",
+  ],
+  agents: ["Planner", "Actor", "Observer", "Critic"],
+  tech: [
+    "Next.js 16",
+    "React 19",
+    "FastAPI",
+    "Claude Vision API",
+    "Playwright",
+    "Selenium",
+    "Cypress",
+    "PostgreSQL",
+    "GitHub Actions",
+    "scikit-learn",
+  ],
+} as const;
+
 export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
