@@ -57,7 +57,7 @@ export const experience = [
     points: [
       "Designed and shipped Go backend services and REST/gRPC APIs across 6+ microservices",
       "Cut average API response times by 30% through query tuning and structured logging, with secured service-to-service communication",
-      "Implemented secure wallet authentication and on-chain transaction verification for blockchain features (1,000+ daily transactions)",
+      "Worked with Layer 1 blockchain technology",
     ],
   },
   {
@@ -67,7 +67,7 @@ export const experience = [
     points: [
       "Built and delivered end-to-end features across React/TypeScript frontends and Node.js/Go backends",
       "Developed a reusable library of 20+ responsive, accessible React components from Figma designs",
-      "Integrated payment-gateway and blockchain token deposit/withdrawal APIs, lifting transaction success rates by 15%",
+      "Integrated payment-gateway  deposit/withdrawal APIs, lifting transaction success rates by 15%",
       "Reduced API latency by 25% and lowered UI defects through code reviews and performance tuning",
       "Shipped 3–4 features per sprint in an Agile/Scrum team using Git, Jira, and Docker",
     ],
