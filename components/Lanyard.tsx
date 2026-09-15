@@ -42,11 +42,30 @@ export default function Lanyard({
   fov = 20,
   transparent = true,
 }: LanyardProps) {
+  // Pause the whole scene (render + physics) while scrolled off-screen —
+  // phones otherwise burn GPU on a hero nobody is looking at.
+  const wrapper = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const el = wrapper.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), {
+      rootMargin: '80px',
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <div className="relative z-0 flex h-full w-full items-center justify-center">
+    <div ref={wrapper} className="relative z-0 flex h-full w-full items-center justify-center">
       <Canvas
         camera={{ position, fov }}
-        gl={{ alpha: transparent }}
+        // Cap device-pixel-ratio: DPR-3 phones would otherwise push ~4x the
+        // pixels for no visible gain, which stalls the physics frame loop.
+        dpr={[1, 1.5]}
+        frameloop={visible ? 'always' : 'never'}
+        gl={{ alpha: transparent, powerPreference: 'high-performance' }}
         onCreated={({ gl }) =>
           gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)
         }
